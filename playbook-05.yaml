@@ -1,0 +1,22 @@
+- name: Variables
+  hosts: local
+  connection: local
+  vars: #play level variables.
+    NAME: Chandan
+    AGE: 27
+    HOBBIES: "Swimming , Gym"
+  tasks:
+    - name: print variables
+      vars: #task level variables.
+        NAME: Bradley
+      ansible.builtin.debug:
+        msg: "NAME : {{ NAME }} AGE : {{ AGE }} HOBBIES : {{ HOBBIES }}"
+        # in above case name is taken as Bradley
+    - name: print variables
+      ansible.builtin.debug:
+        msg: "NAME : {{ NAME }} AGE : {{ AGE }} HOBBIES : {{ HOBBIES }}"
+         # in above case name is taken as Chandan
+
+# play level variables is like global variables, 
+# if we dont have any variable within task, play level variables are used.
+# task level variables cannot be used outside of that particular task.
