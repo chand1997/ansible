@@ -1,3 +1,10 @@
--name: Print Message
-  ansible.builtin.debug:
-    msg: Hello Chandan!!!!
+- name: Print
+  hosts: web
+  tasks:
+  - name: Print
+    ansible.builtin.debug:
+      - msg: Hello Chandan!!!!
+
+
+
+      
