@@ -1,0 +1,8 @@
+- name: Using variables from another file.
+  hosts: local
+  connection: local
+  vars_file: info.yaml # This is how we use variables from another file.
+  tasks:
+    - name: Printing variables
+      ansible.builtin.debug:
+        msg: "NAME : {{ NAME }} AGE : {{ AGE }} HOBBIES : {{ HOBBIES }}"
