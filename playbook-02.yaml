@@ -6,5 +6,9 @@
       msg: Hello Chandan!!!!
 
 
+  # Basically this playbook connects to servers in inventory.ini and printed the given message on those servers.
+  # maybe using echo. 
+
+
 
       
