@@ -1,0 +1,20 @@
+- name: Taking variables dynamically.
+  hosts: local
+  connection: local
+  vars_prompt:
+    - name: Username
+      prompt: Enter Username
+      private: false # by default private would be true i.e it does not appears on screen when we type.
+
+    - name: Age
+      prompt: Enter Age
+      private: false
+
+    - name: Hobby
+      prompt: Enter Hobby
+      private: false
+
+  tasks:
+    - name: Printing variables
+      ansible.builtin.debug:
+        msg: "NAME : {{ Username }} AGE : {{ Age }} HOBBY : {{ Hobby }}"
