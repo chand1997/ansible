@@ -2,7 +2,7 @@
 
 - name: Installing Nginx
   hosts : web
-  become : yes
+  become : yes  #this is basically giving root access -b-->(in adhoc) sudo-->(in shell)
   tasks :
     - name: Installing
       ansible.builtin.package:

@@ -1,0 +1,18 @@
+- name: Play-1
+  hosts: local
+  connection: local
+  tasks:
+    - name: Play-1 Task-1
+      ansible.builtin.debug:
+        msg: "Hello from Play-1 Task-1"
+
+- name: Play-2
+  hosts: local
+  connection: local
+  tasks:
+    - name: Play-2 Task-1
+      ansible.builtin.debug:
+        msg: "Hello from Play-2 Task-1"
+        
+# how to run playbooks on the ansible-server itself.(server where ansible is installed)
+# we dont have to pass ansible_user and ansible_password because we are executing playbook on the same server itself.
