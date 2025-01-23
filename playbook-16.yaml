@@ -1,0 +1,10 @@
+- name: Loops
+  hosts: local
+  tasks:
+    - name: Print in loop
+      ansible.builtin.debug:
+        msg: "Hi {{ item }}"  # item and loop are special keywords used in loops.
+      loop:
+      - Chandan
+      - Bradley
+      - Garry
