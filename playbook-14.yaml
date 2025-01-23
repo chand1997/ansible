@@ -11,7 +11,7 @@
 
     - name: Print OS-Version
       ansible.builtin.debug:
-        msg: "{{ ansible_facts.version }}"
+        msg: "{{ ansible_facts.distribution_version }}"
 
     - name: Print Kernel
       ansible.builtin.debug:
