@@ -2,15 +2,16 @@
 
 - name: Install Nginx
   hosts: web
+  become: yes
   tasks:
     - name: Installing 
       ansible.builtin.dnf:
         name: nginx
         state: present
-      when: ansible_facts.os_family == "RedHat"
+      when: ansible_os_family == "RedHat"
 
     - name: Installing 
       ansible.builtin.apt:
         name: nginx
         state: present
-      when: ansible_facts.os_family == "Debian"
+      when: ansible_os_family == "Debian"
