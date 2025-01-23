@@ -4,6 +4,6 @@
     num: 20
   tasks:
     - name: Print
-      ansible.buitin.debug:
+      ansible.builtin.debug:
         msg: "Given numer is greater than 10"
       when: num>10
