@@ -1,7 +1,7 @@
 - name: Preferences of variables
   hosts: local
-  vars_files:
-    - info.yaml
+  # vars_files:
+  #   - info.yaml
   vars:
     Greet: "Hi from Play"
   vars_prompt:
@@ -18,6 +18,6 @@
 #Preference
 # 1.command line
 # 2.task level variable
-# 2.source file
+# 3.source file
 # 3.prompt
 # 4. ini file
