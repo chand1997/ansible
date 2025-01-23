@@ -15,10 +15,10 @@
       ansible.builtin.debug:
         msg: "{{ Greet }}"
 
-#Preference
+#Preference of variables
 # 1.command line
 # 2.task level variable
 # 3.source file
 # 4.prompt
 # 5.Play
-# 6. ini file
+# 6. .ini file
