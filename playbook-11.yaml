@@ -4,10 +4,10 @@
   #   - info.yaml
   vars:
     Greet: "Hi from Play"
-  vars_prompt:
-    - name: Greet
-      prompt: Enter greeting
-      private: false
+  # vars_prompt:
+  #   - name: Greet
+  #     prompt: Enter greeting
+  #     private: false
   tasks:
     - name: Task-1
     #   vars:
@@ -19,5 +19,5 @@
 # 1.command line
 # 2.task level variable
 # 3.source file
-# 3.prompt
+# 4.prompt
 # 4. ini file
