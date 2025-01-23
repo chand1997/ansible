@@ -16,3 +16,5 @@
     - name: Print
       ansible.builtin.debug:
         msg: "Im on a {{ trip }} for {{days}} days which i telecast live:{{live_telecast}} on youtube where i cover {{countries}} and equipment used to recorc are {{tools}}"
+
+  # In this playbook different datatypes are shown.
