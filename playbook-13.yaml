@@ -11,4 +11,6 @@
     - name: Print
       ansible.builtin.debug:
         msg: "Given number is less than or equal to 10"
-      when: given_num | int <=10
+      when: given_num | int <=10 
+      # we are using " | int " to convert given_num to convert to integer and then 
+      # compare with 10
