@@ -1,17 +1,17 @@
 - name: Preferences of variables
   hosts: local
-  # vars_files:
-  #   - info.yaml
+  vars_files:
+    - info.yaml
   vars:
-    greet: "Hi from Play"
-  # vars_prompt:
-  #   - name: Greet
-  #     prompt: Enter greeting
-  #     private: false
+    Greet: "Hi from Play"
+  vars_prompt:
+    - name: Greet
+      prompt: Enter greeting
+      private: false
   tasks:
     - name: Task-1
       vars:
-        greet: "Hi from task"
+        Greet: "Hi from task"
       ansible.builtin.debug:
         msg: "{{ Greet }}"
 
