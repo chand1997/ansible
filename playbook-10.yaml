@@ -1,0 +1,9 @@
+- name: Passing variables from command line.
+  hosts: local
+  tasks:
+    - name: Print
+      ansible.builtin.debug:
+       msg: "NAME : {{ Username }} AGE : {{ Age }} HOBBY : {{ Hobby }}"
+
+
+# ansible-playbook -i inventory.ini playbook-10.yaml -e "Username=Chandan" -e "Age=27" -e "Hobby=Gym"
