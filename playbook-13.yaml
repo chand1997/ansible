@@ -1,0 +1,9 @@
+- name: Check number is greater than 10
+  hosts: local
+  vars:
+    num: 20
+  tasks:
+    - name: Print
+      ansible.buitin.debug:
+        msg: "Given numer is greater than 10"
+      when: num>10
