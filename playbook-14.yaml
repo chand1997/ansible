@@ -1,6 +1,18 @@
 - name: Ansible Facts
-  hosts: local
+  hosts: web
   tasks:
-    - name: Print
+    - name: Print OS-Distribution
       ansible.builtin.debug:
-        msg: "{{ ansible_facts }}"
+        msg: "{{ ansible_facts.distribution }}"
+
+    - name: Print OS-Family
+      ansible.builtin.debug:
+        msg: "{{ ansible_facts.os_family }}"
+
+    - name: Print OS-Version
+      ansible.builtin.debug:
+        msg: "{{ ansible_facts.version }}"
+
+    - name: Print Kernel
+      ansible.builtin.debug:
+        msg: "{{ ansible_facts.kernel }}"
