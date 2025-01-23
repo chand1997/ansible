@@ -1,5 +1,5 @@
 - name: Ansible Facts
-  hosts: groupinghosts
+  hosts: local
   tasks:
     - name: Print
       ansible.builtin.debug:
