@@ -1,0 +1,6 @@
+- name: "Passing username and password from .ini"
+  hosts: groupinghosts
+  tasks:
+    - name: Print
+      ansible.builtin.debug:
+        msg: "NAME : {{ Username }} AGE : {{ Age }} HOBBY : {{ Hobby }}"
