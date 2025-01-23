@@ -6,9 +6,9 @@
     - name: Print
       ansible.builtin.debug:
         msg: "Given numer is greater than 10"
-      when: given_num>10  # when is used as if 
+      when: given_num | int >10  # when is used as if 
 
     - name: Print
       ansible.builtin.debug:
         msg: "Given number is less than or equal to 10"
-      when: given_num<=10
+      when: given_num | int <=10
