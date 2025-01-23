@@ -1,0 +1,6 @@
+- name: Ansible Facts
+  hosts: groupinghosts
+  tasks:
+    - name: Print
+      ansible.builtin.debug:
+        msg: "{{ ansible_facts }}"
