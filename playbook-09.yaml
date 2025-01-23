@@ -4,3 +4,7 @@
     - name: Print
       ansible.builtin.debug:
         msg: "NAME : {{ Username }} AGE : {{ Age }} HOBBY : {{ Hobby }}"
+
+
+# In this we grouped both ansible server and node together using keyword children and passed ansible_user 
+#  and password from .ini file
