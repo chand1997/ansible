@@ -1,0 +1,18 @@
+- name: Travelling
+  hosts: local
+  vars:
+    trip: "Europe_trip" # string
+    days: 20 #number
+    live_telecast: true #boolean
+    countries: # list
+      - Germany
+      - Netherland
+      - Denmark
+    tools: #map
+      camera: Sony
+      drone: samsung
+      mike: boat
+  tasks:
+    - name: Print
+      ansible.builtin.debug:
+        msg: "Im on a {{ trip }} for {{days}} days which i telecast live:{{live_telecast}} on youtube where i cover {{countries}} and equipment used to recorc are {{tools}}"
