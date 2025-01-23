@@ -9,14 +9,15 @@
       prompt: Enter greeting
       private: false
   tasks:
-    - name: Task-1
-      vars:
-        Greet: "Hi from task"
+    # - name: Task-1
+    #   vars:
+    #     Greet: "Hi from task"
       ansible.builtin.debug:
         msg: "{{ Greet }}"
 
 #Preference
 # 1.command line
+# 2.task level variable
 # 2.source file
 # 3.prompt
 # 4. ini file
