@@ -1,0 +1,6 @@
+- name: Filters
+  hosts: local
+  tasks:
+    - name: Filter to provide default value
+      ansible.builtin.debug:
+        msg: "Hi {{ name | default('Chandan')}}  Age: {{ age | default(27) }}"
