@@ -54,9 +54,11 @@
     - name: Filter to transform list to map/dictionary
       vars:
         info:
-          - key: Application
-            value: payment
-          - key: Environment
-            value: dev
+          - key: name
+            value: Chandan
+          - key: Hobby
+            value: Boxing
+          - key: age
+            value: 27
       ansible.builtin.debug:
         msg: "{{ info | items2dict }}"
