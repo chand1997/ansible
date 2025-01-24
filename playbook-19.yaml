@@ -31,7 +31,7 @@
       vars:
         given_num: 1
       ansible.builtin.debug:
-        msg: "{{ given_num | int >10 | ternary('Given number is greater than 10','Given number is less than or equal to 10')}}"
+        msg: "{{ (given_num | int) > 10 | ternary('Given number is greater than 10','Given number is less than or equal to 10')}}"
 
       # given_num | int --> here we are forcing the variable to be a integer.
 
