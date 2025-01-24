@@ -12,3 +12,7 @@
         - { name: "Chandan", age: 27 }
         - { name: "Bradley" }
         - { age: 33 }
+
+    - name: Filter to make variables mandatory
+      ansible.builtin.debug:
+        msg: "Email:{{ email | mandatory }}"
