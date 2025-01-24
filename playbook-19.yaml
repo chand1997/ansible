@@ -51,8 +51,9 @@
       ansible.builtin.debug:
         msg: "{{ info | dict2items}}"
 
-    - name: Filter to transform list to map/dictionary
+    - name: Filter to transform list to map/dictionary.
       vars:
+        # the syntax of list should be as below to use items2dict filter.
         info:
           - key: name
             value: Chandan
@@ -68,3 +69,15 @@
         given_ip: "123.222.22.1"
       ansible.builtin.debug:
         msg: "{{ given_ip | ipaddr}}"
+
+    - name: Filter to make uppercase and lowercase
+      vars:
+        name: "Chandan"
+      ansible.builtin.debug:
+        msg: "Name in uppercase:{{ name | upper}} Name in lowercase:{{ name | lower }}"
+
+    - name: Filter to find min and max in given list
+      vars:
+        given_list: [1, 22, -1, 44]
+      ansible.builtin.debug:
+        msg: "Minimum number:{{ given_list | min}} Maximum number:{{ given_list | max}}"
