@@ -50,3 +50,11 @@
           hobby: "Boxing, Swimming"
       ansible.builtin.debug:
         msg: "{{ info | dict2items}}"
+
+    - name: Filter to transform list to map/dictionary
+      vars:
+        info:
+          - { name: "Chandan", age: 22 }
+          - { hobby: "Boxing", single: true }
+      ansible.builtin.debug:
+        msg: "{{ info | items2dict }}"
