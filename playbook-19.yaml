@@ -14,6 +14,8 @@
         - { age: 33 }
 
     - name: Filter to make variables mandatory
+      vars:
+        email: "chan@hotmail.com"
       ansible.builtin.debug:
         msg: "Email:{{ email | mandatory }}"
     # if we don't provide variables which declared as mandatory
