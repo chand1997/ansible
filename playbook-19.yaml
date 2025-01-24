@@ -41,3 +41,12 @@
         fruits: " apple, banana , grapes"
       ansible.builtin.debug:
         msg: "{{ fruits | split(',')}}"
+
+    - name: Filter to transform map/dictionary to list
+      vars:
+        info:
+          name: "Chandan"
+          age: 27
+          hobby: "Boxing, Swimming"
+      ansible.builtin.debug:
+        msg: "{{ info | dict2items}}"
