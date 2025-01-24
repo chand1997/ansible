@@ -1,0 +1,8 @@
+- name: Difference between shell and command
+  hosts: local
+  tasks:
+    - name: execute ls using command
+      ansible.builtin.command: ls -l > /tmp/output.txt
+# ls -l > /tmp/output.txt --> this command lists files in long format and stores the result in output.txt
+# but command can only access files but not more than that like piping, redirections(>,>>),etc
+# in order to do that we have to use shell.
