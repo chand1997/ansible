@@ -62,3 +62,9 @@
             value: 27
       ansible.builtin.debug:
         msg: "{{ info | items2dict }}"
+
+    - name: Check given string is valid ip address.
+      vars:
+        given_ip: "123.222.22.1"
+      ansible.builtin.debug:
+        msg: "{{ given_ip | ipaddr}}"
