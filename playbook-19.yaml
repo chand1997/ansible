@@ -4,3 +4,11 @@
     - name: Filter to provide default value
       ansible.builtin.debug:
         msg: "Hi {{ name | default('Chandan')}}  Age: {{ age | default(27) }}"
+
+    - name: Filter to make varaibles optional.
+      ansible.builtin.debug:
+        msg: "Name:{{ item.name | default(omit) }} Age:{{ item.age | default(omit)}}"
+      loop:
+        - { name: "Chandan", age: 27 }
+        - { name: "Bradley" }
+        - { age: 33 }
