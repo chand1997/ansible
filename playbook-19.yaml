@@ -16,3 +16,19 @@
     - name: Filter to make variables mandatory
       ansible.builtin.debug:
         msg: "Email:{{ email | mandatory }}"
+    # if we don't provide variables which declared as mandatory
+    #  {"msg": "Mandatory variable 'email'  not defined."}--> this error message is thrown.
+
+    - name: Filter which can be used as if-else
+      vars:
+        active: true
+      ansible.builtin.debug:
+        msg: "{{ active | ternary('User is online','User is offline')}}"
+
+    - name: Check number is greater than 10 or not using ternary
+      vars:
+        given_num: 1
+      ansible.builtin.debug:
+        msg: "{{ given_num>10 | ternary('Given number is greater than 10','Given number is less than or equal to 10')}}"
+
+
