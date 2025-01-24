@@ -3,17 +3,16 @@
   tasks:
     - name: execute ls using command
       # ansible.builtin.command: ls -l > /tmp/output.txt
-# ls -l > /tmp/output.txt --> this command lists files in long format and stores the result in output.txt
-# but command can only access files but not more than that like piping, redirections(>,>>),etc
-# in order to do that we have to use shell.
-        ansible.buitin.command: ls -l
-        register: output_files
-  # register stores the output of ls -l in output_files
+      # ls -l > /tmp/output.txt --> this command lists files in long format and stores the result in output.txt
+      # but command can only access files but not more than that like piping, redirections(>,>>),etc
+      # in order to do that we have to use shell.
+      ansible.buitin.command: ls -l
+      register: output_files
+    # register stores the output of ls -l in output_files
 
     - name: Print
       ansible.builtin.debug:
         msg: "{{ output_files }}"
-
 
     - name: execute ls using shell
       ansible.builtin.shell: ls -l > /tmp/output.txt
