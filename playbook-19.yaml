@@ -54,8 +54,9 @@
     - name: Filter to transform list to map/dictionary
       vars:
         info:
-          - Germany
-          - India
-          - Russia
+          - key: Application
+            value: payment
+          - key: Environment
+            value: dev
       ansible.builtin.debug:
         msg: "{{ info | items2dict }}"
