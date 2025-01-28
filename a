@@ -1,4 +1,8 @@
- {
+"msg": {
+    "changed": false,
+    "msg": "All items completed",
+    "results": [
+        {
             "ansible_loop_var": "item",
             "changed": false,
             "changes": [],
@@ -664,3 +668,6 @@
             },
             "item": "frontend"
         }
+    ],
+    "skipped": false
+}

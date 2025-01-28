@@ -29,9 +29,9 @@
 
     - name: Print o/p
       ansible.builtin.debug:
-        msg: "{{ ec2_output }}"
-        # msg: "{{ item.instances[0].private_ip_address }} {{ item.instances[0].public_ip_address }}"
-      # loop: "{{ ec2_output.results }}"
+        # msg: "{{ ec2_output }}"
+        msg: "{{ item.instances[0].private_ip_address }}"
+      loop: "{{ ec2_output.results }}"
 
     # - name: Add DNS records to Route 53
     #   amazon.aws.route53:
