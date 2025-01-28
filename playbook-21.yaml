@@ -11,6 +11,8 @@
   tasks:
     - name: Installing python libraries
       ansible.builtin.pip:
+        name: "{{ item }}"
+        state: present
       loop:
         - botocore
         - boto3
