@@ -4,6 +4,7 @@
     subnet_id: subnet-0dc9d1318a2d9932e
     instance_type: t3.micro
     image_id: ami-09c813fb71547fc4f
+    zone: "chandev.site"
     names:
       - mysql
       - backend
@@ -33,26 +34,26 @@
         msg: "{{ item.instances[0].private_ip_address }}"
       loop: "{{ ec2_output.results }}"
 
-    # - name: Add DNS records to Route 53
-    #   amazon.aws.route53:
-    #     zone: Z02189981TMASRQY8AQ08
-    #     record_name: "{{ item.item }}.chandev.site"
-    #     record_type: A
-    #     ttl: 1
-    #     value: "{{ item.instances[0].private_ip_address }}"
-    #     state: present
-    #     overwrite: true
-    #   loop: "{{ ec2_output.results }}"
+    - name: Add DNS records to Route 53
+      amazon.aws.route53:
+        zone: "{{ zone }}"
+        record_name: "{{item.item}}.{{zone}}"
+        record_type: A
+        ttl: 1
+        value: "{{ item.instances[0].private_ip_address }}"
+        state: present
+        overwrite: true
+      loop: "{{ ec2_output.results }}"
 
-    # - name: Add DNS records to Route 53
-    #   amazon.aws.route53:
-    #     zone: Z02189981TMASRQY8AQ08
-    #     record_name: "chandev.site"
-    #     record_type: A
-    #     ttl: 1
-    #     value: "{{ item.instances[0].public_ip_address }}"
-    #     state: present
-    #     overwrite: true
-    #     when: item.item == "frontend"
-    #   loop: "{{ ec2_output.results }}"
+    - name: Add DNS records to Route 53
+      amazon.aws.route53:
+        zone: "{{ zone }}"
+        record_name: "{{zone}}"
+        record_type: A
+        ttl: 1
+        value: "{{ item.instances[0].public_ip_address }}"
+        state: present
+        overwrite: true
+        when: item.item == "frontend"
+      loop: "{{ ec2_output.results }}"
       
