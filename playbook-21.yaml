@@ -29,4 +29,5 @@
 
     - name: Print o/p
       ansible.builtin.debug:
-        msg: "{{ ec2_output.results }}"
+        msg: "{{ item.instances[0].private_ip_address }} {{ item.instances[0].public_ip_address }}"
+      loop: "{{ ec2_output.results }}"
