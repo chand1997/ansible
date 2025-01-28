@@ -37,8 +37,8 @@
     - name: Add DNS records to Route 53
       amazon.aws.route53:
         zone: "{{ zone }}"
-        record_name: "{{item.item}}.{{zone}}"
-        record_type: A
+        record: "{{item.item}}.{{zone}}"
+        type: A
         ttl: 1
         value: "{{ item.instances[0].private_ip_address }}"
         state: present
@@ -48,8 +48,8 @@
     - name: Add DNS records to Route 53
       amazon.aws.route53:
         zone: "{{ zone }}"
-        record_name: "{{zone}}"
-        record_type: A
+        record: "{{zone}}"
+        type: A
         ttl: 1
         value: "{{ item.instances[0].public_ip_address }}"
         state: present
