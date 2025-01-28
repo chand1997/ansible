@@ -1,0 +1,19 @@
+- name: Create 3 ec2-instances with records.
+  hosts: local
+  vars:
+    subnet-id: subnet-0dc9d1318a2d9932e
+    instance-type: t3.micro
+    image-id: ami-09c813fb71547fc4f
+    names:
+      - mysql
+      - backend
+      - frontend
+  tasks:
+    - name: Create instances
+      amazon.aws.ec2_instance:
+        name: "{{ item }}"
+        vpc_subnet_id: "{{ subnet-id }}"
+        instance_type: "{{ instance-type }}"
+        image_id: "{{ image-id }}"
+        wait: true
+      loop: "{{ names }}"
