@@ -25,3 +25,8 @@
         image_id: "{{ image_id }}"
         wait: true
       loop: "{{ names }}"
+      register: ec2_output
+
+    - name: Print o/p
+      ansible.builtin.debug:
+        msg: "{{ ec2_output }}"
