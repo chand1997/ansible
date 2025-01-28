@@ -29,29 +29,30 @@
 
     - name: Print o/p
       ansible.builtin.debug:
-        msg: "{{ item.instances[0].private_ip_address }} {{ item.instances[0].public_ip_address }}"
-      loop: "{{ ec2_output.results }}"
+        msg: "{{ ec2_output }}"
+        # msg: "{{ item.instances[0].private_ip_address }} {{ item.instances[0].public_ip_address }}"
+      # loop: "{{ ec2_output.results }}"
 
-    - name: Add DNS records to Route 53
-      amazon.aws.route53:
-        zone: Z02189981TMASRQY8AQ08
-        record_name: "{{ item.item }}.chandev.site"
-        record_type: A
-        ttl: 1
-        value: "{{ item.instances[0].private_ip_address }}"
-        state: present
-        overwrite: true
-      loop: "{{ ec2_output.results }}"
+    # - name: Add DNS records to Route 53
+    #   amazon.aws.route53:
+    #     zone: Z02189981TMASRQY8AQ08
+    #     record_name: "{{ item.item }}.chandev.site"
+    #     record_type: A
+    #     ttl: 1
+    #     value: "{{ item.instances[0].private_ip_address }}"
+    #     state: present
+    #     overwrite: true
+    #   loop: "{{ ec2_output.results }}"
 
-    - name: Add DNS records to Route 53
-      amazon.aws.route53:
-        zone: Z02189981TMASRQY8AQ08
-        record_name: "chandev.site"
-        record_type: A
-        ttl: 1
-        value: "{{ item.instances[0].public_ip_address }}"
-        state: present
-        overwrite: true
-        when: item.item == "frontend"
-      loop: "{{ ec2_output.results }}"
+    # - name: Add DNS records to Route 53
+    #   amazon.aws.route53:
+    #     zone: Z02189981TMASRQY8AQ08
+    #     record_name: "chandev.site"
+    #     record_type: A
+    #     ttl: 1
+    #     value: "{{ item.instances[0].public_ip_address }}"
+    #     state: present
+    #     overwrite: true
+    #     when: item.item == "frontend"
+    #   loop: "{{ ec2_output.results }}"
       
