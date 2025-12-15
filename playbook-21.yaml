@@ -1,3 +1,10 @@
+# steps before 
+# 1. create--> iam --> user --> security-credentials --> access-keys
+# 2. aws configure
+      # the above info will be in --> /home/ec2-user/.aws/  
+      # if we give "become: yes" in playbook , its not going to work because credentials are stored in above directory.
+      # we dont have to give "become:yes" because we have already given that to user created in iam.
+
 - name: Create 3 ec2-instances with records.
   hosts: local
   vars:
@@ -36,25 +43,46 @@
     #     msg: "{{ item.instances[0].private_ip_address }}"
     #   loop: "{{ ec2_output.results }}"
 
+    # - name: Add DNS records to Route 53
+    #   amazon.aws.route53:
+    #     zone: "{{ zone }}"
+    #     record: "{{item.item}}.{{zone}}"
+    #     type: A
+    #     ttl: 1
+    #     value: "{{ item.instances[0].private_ip_address }}"
+    #     state: present
+    #     overwrite: true
+    #   loop: "{{ ec2_output.results }}"
+
+    # - name: Add DNS records to Route 53
+    #   amazon.aws.route53:
+    #     zone: "{{ zone }}"
+    #     record: "{{zone}}"
+    #     type: A
+    #     ttl: 1
+    #     value: "{{ item.instances[0].public_ip_address }}"
+    #     state: present
+    #     overwrite: true
+    #   loop: "{{ ec2_output.results }}"
+    #   when: item.item == "frontend"
+
+
+# better way to write above two tasks as one using ternary operator.
     - name: Add DNS records to Route 53
       amazon.aws.route53:
         zone: "{{ zone }}"
-        record: "{{item.item}}.{{zone}}"
+        record: "{{(item.item == 'frontend' | ternary(zone,item.item + '.' + zone)}}"
         type: A
         ttl: 1
-        value: "{{ item.instances[0].private_ip_address }}"
+        value: "{{ (item.item == 'frontend') | ternary(item.instances[0].public_ip_address , item.instances[0].private_ip_address) }}"
         state: present
         overwrite: true
       loop: "{{ ec2_output.results }}"
 
-    - name: Add DNS records to Route 53
-      amazon.aws.route53:
-        zone: "{{ zone }}"
-        record: "{{zone}}"
-        type: A
-        ttl: 1
-        value: "{{ item.instances[0].public_ip_address }}"
-        state: present
-        overwrite: true
-      loop: "{{ ec2_output.results }}"
-      when: item.item == "frontend"
+# item.item + '.' + zone --> better way--> item.item ~ '.' ~ zone
+        # ~ --> converts any type into string while concatenation
+        # "chan" + 1 --> give errors --> "chan" + (1 | string) manually datatype conversion -->chan1
+        # "chan" ~ 1 --> doesnt give any errors --> chan1
+
+
+

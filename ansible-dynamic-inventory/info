@@ -1,0 +1,19 @@
+Instead of a static inventory file, Ansible dynamically discovers all servers matching a specific tag,
+name, or other criteria on any cloud using a plugin, and automatically groups them — this is dynamic 
+inventory.
+
+steps:
+
+1. aws configure --> should be done
+
+2. create yaml file like name.'aws_ec2.yaml' for better documentation not mandatory.
+
+3. create demo.yaml file to run on all those servers
+
+4. create ansible.cfg and include above .aws_ec2.yaml as inventory
+
+5. Run --> "ansible-inventory --graph" to connect to aws and list all servers based on filters and 
+   group them into group name given.(pip3.9 install boto3 botocore)
+
+6. Run --> ansible-playbook demo.yaml -e "ansible_user=ec2-user" -e "ansible_password=DevOps321" 
+   to install and run nginx on all servers grouped.

@@ -1,0 +1,39 @@
+plugin: amazon.aws.aws_ec2
+regions:
+  - us-east-1
+
+filters:
+  tag:Name: nginx
+
+  # we are collecting every server with name nginx
+
+groups:
+  nginx: true
+
+  # static way of creating group --> every server will be under group "nginx"
+
+keyed_groups:
+  - key: tags.Environment
+    prefix: env_
+
+# dynamic way of creating group,
+# if the servers have "tags.Environment=dev" those servers will be grouped under--> "env_dev" group
+
+
+
+hostnames: 
+  - private-ip-address
+
+  # above code does this
+    # [nginx]
+    # list of private-ip like inventory file
+
+compose:
+  ansible_host: private_ip_address
+
+  # what are we using to connect(ssh)--> private-ip
+
+
+  #  basically we are connecting to aws and collecting all servers on aws with name nginx (filter)
+  # and grouping them under group called nginx(groups)  
+  # how to connect to all servers --> ansible_host: private_ip

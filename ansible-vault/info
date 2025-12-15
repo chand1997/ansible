@@ -1,0 +1,40 @@
+I want to store the database password "ExpenseApp@1" in ansible-vault
+
+steps:
+
+1. ansible-vault create mysql_password
+   this asks vault-password and then creates mysql_password file and enter like
+    mysql_pass: ExpenseApp@1
+
+    ansible-vault --help --> for various options
+
+2. and add route for above file in vars_files in mysql playbook like
+   vars_files:
+    -  ~/mysql_password
+
+3. if we run mysql playbook it gives error like no password for decryption,then
+  we have to run playbook like
+    ansible-playbook <mysql-playbook> --ask-vault-pass
+
+    or 
+
+  change ansible.cfg 
+    ask_vault_pass = true
+
+In above case the playbook stops to ask password, inorder to make it automatic
+create file in server like vault_pass and give path in ansible.cfg
+   vault_password_file = ~/vault_pass
+
+
+So basically we are,
+1. creating vault to store mysql_password which is encrypted file.
+2. Inoredr to use mysql_password , it has to be decrypted
+3. We are giving vault password to decrypt.
+4. We have to maintain that vault password in our servers and give path of that location.
+soo complicating, so just use parameter store in aws
+
+steps:
+
+1. go to parameter store on aws
+2. create parameter for mysql_password itself like /expense/mysql/mysql_pass
+3. use it like --> lookup('amazon.aws.aws_ssm', '/expense/mysql/mysql_pass', decrypt=true)

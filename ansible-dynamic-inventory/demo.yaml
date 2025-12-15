@@ -1,0 +1,14 @@
+- name: Run playbook on all nginx servers
+  hosts: all  # this runs on every server connected.
+  # or "nginx" or "env_dev" to run specifically.
+  become: yes
+  tasks:
+    - name: install nginx
+      ansible.builtin.package:
+        name: nginx
+        state: present
+        
+    - name: Ensure nginx is running
+      ansible.builtin.service:
+        name: nginx
+        state: started

@@ -7,3 +7,4 @@
     - name: Printing variables
       ansible.builtin.debug:
         msg: "NAME : {{ NAME }} AGE : {{ AGE }} HOBBIES : {{ HOBBIES }}"
+
